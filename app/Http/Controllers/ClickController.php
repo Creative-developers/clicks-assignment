@@ -7,7 +7,7 @@ use  Illuminate\Http\Resposne;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Click;
 use App\Models\Client;
-
+use App\Events\ClickEvent;
 class ClickController extends Controller
 {
     public function generateClick(Request $request, $click){
@@ -37,6 +37,9 @@ class ClickController extends Controller
             $new_click->client_id = $next_client->id;
             $new_click->click_number =  $click;
             $new_click->save();
+
+            //Send the email notification to the client for the click received
+            event(new ClickEvent($new_click));
 
             Cache::put('last_assigned_client', $next_client->id);
 

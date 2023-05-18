@@ -7,4 +7,4 @@ use App\Http\Controllers\ClickController;
 
 
 
-Route::get('/click/{click_number}', [ClickController::class, 'generateClick'])->name('click.generate');
+Route::get('/click/{click_number}', [ClickController::class, 'generateClick'])->middleware('validateClickNumber')->name('click.generate');

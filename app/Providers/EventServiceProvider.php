@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Events\ClientWelcome;
+use App\Events\ClickEvent;
 use App\Listeners\SendWelcomeEmail;
+use App\Listeners\SendClickNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         ClientWelcome::class => [
             SendWelcomeEmail::class
+        ],
+        ClickEvent::class => [
+            SendClickNotification::class
         ]
     ];
 

@@ -17,8 +17,8 @@
     @if (session()->has('error'))
         <div class="text-red-500">{{ session('error') }}</div>
     @endif
-
-    <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md" wire:loading.attr="disabled">
+    <div wire:ignore>
+    <button type="submit"  class="px-4 py-2 bg-blue-500 text-white rounded-md" wire:loading.attr="disabled">
         <span wire:loading wire:target="saveClient">Loading...</span>
         <span wire:loading.remove>
             @if ($clientId)
@@ -28,4 +28,5 @@
             @endif
         </span>
     </button>
+    </div>
 </form>
